@@ -5,5 +5,6 @@ import { AeropuertosController } from './aeropuertos.controller';
 @Module({
   controllers: [AeropuertosController],
   providers: [AeropuertosService],
+  exports: [AeropuertosService], // Importante para que otros módulos lo usen
 })
 export class AeropuertosModule {}

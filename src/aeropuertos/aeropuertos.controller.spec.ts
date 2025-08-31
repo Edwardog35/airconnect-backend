@@ -4,19 +4,20 @@ import { CreateAeropuertoDto } from './dto/create-aeropuerto.dto';
 import { UpdateAeropuertoDto } from './dto/update-aeropuerto.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('aeropuertos')
-@Controller('aeropuertos_ok')
-export class AeropuertosController {
+ @ApiTags('aeropuertos')
+ @Controller('aeropuertos')
+ export class AeropuertosController {
   constructor(private readonly aeropuertosService: AeropuertosService) {}
 
-  @Post()
-  @ApiOperation({ summary: 'Registrar un nuevo aeropuerto' })
-  @ApiResponse({ status: 201, description: 'Aeropuerto creado correctamente.' })
-  create(@Body() dto: CreateAeropuertoDto) {
-    // log para verificar que estás pegando al controller correcto
-    console.log('[POST /aeropuertos] DTO =>', dto);
-    return this.aeropuertosService.create(dto);
-  }
+ @Post()
+ @ApiOperation({ summary: 'Registrar un nuevo aeropuerto' })
+ @ApiResponse({ status: 201, description: 'Aeropuerto creado correctamente.' })
+ @Post()
+ create(@Body() createAeropuertoDto: CreateAeropuertoDto) {
+  return this.aeropuertosService.create(createAeropuertoDto);
+}
+
+
 
   @Get()
   @ApiOperation({ summary: 'Listar aeropuertos' })
